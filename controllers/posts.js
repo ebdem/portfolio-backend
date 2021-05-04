@@ -23,3 +23,15 @@ export const createPost = async (req, res) => {
         })
     }
 }
+
+export const getSinglePost = async (req, res) =>{
+    try {
+        const {id:_id} = req.params;
+        const post = await Post.findById(_id);
+        res.status(200).json(post);
+    }catch (error){
+        res.status(404).json({
+            message: error.message,
+        });
+    }
+}
